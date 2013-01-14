@@ -1,0 +1,22 @@
+# Pre-commit hook passing files through specified Linter
+#
+# This ensures that all files are valid and conform
+# to expectations.
+
+ROOT_DIR=$(git rev-parse --show-toplevel)
+# LINTER="node ${ROOT_DIR}/node_modules/.bin/jslint"
+LINTER="phpcs --standard=PSR2 --extensions=php"
+# FILES="(js)|(html)|(json)"
+FILES="php"
+
+## No need to edit below here ##
+error_count=0
+
+for file in $(git diff-index --name-only --diff-filter=ACM HEAD | grep -P "\.($FILES)\$"); do
+    $LINTER $file
+    error_count=$(($error_count + $?))
+done
+
+if [ $error_count -gt 0 ] ; then
+    exit 1
+fi
