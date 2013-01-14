@@ -4,9 +4,10 @@
 # to expectations.
 
 ROOT_DIR=$(git rev-parse --show-toplevel)
-# LINTER="node ${ROOT_DIR}/node_modules/.bin/jslint"
+#LINTER="node ${ROOT_DIR}/node_modules/.bin/jslint"
+#LINTER="node ${ROOT_DIR}/node_modules/jshint/bin/hint"
 LINTER="phpcs --standard=PSR2 --extensions=php"
-# FILES="(js)|(html)|(json)"
+#FILES="(js)|(html)|(json)"
 FILES="php"
 
 ## No need to edit below here ##
